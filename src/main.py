@@ -1,5 +1,5 @@
-from src.power import power_function
-from src.constants import SAMPLE_CONSTANT
+import typer
+from src.router import router
 
 
 def main() -> None:
@@ -8,13 +8,8 @@ def main() -> None:
     :return: Данная функция ничего не возвращает
     """
 
-    target, degree = map(int, input("Введите два числа разделенные пробелом: ").split(" "))
-
-    result = power_function(target=target, power=degree)
-
-    print(result)
-
-    print(SAMPLE_CONSTANT)
+    while (f := input("Choose function (type 'quit', 'q', 'exit' or 'e' to stop): ")) not in ["quit", "q", "exit", "e"]:
+        router(f)
 
 if __name__ == "__main__":
-    main()
+    typer.run(main)
