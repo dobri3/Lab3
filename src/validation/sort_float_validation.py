@@ -1,7 +1,7 @@
 def sort_float_validation(a: list) -> tuple [bool, str] :
     """
     валидация списка, состоящего из чисел с точкой
-    
+
     :param a: список, пришедший на вход от пользователя
     :return: tuple [bool, str] - результат проерки и сообщение об ошибке
     """
@@ -14,4 +14,4 @@ def sort_float_validation(a: list) -> tuple [bool, str] :
             return False, f"Не выполнено условия '0<=x<1' для {wrong_input}"
         return True, ""
     except ValueError:
-            return False, f"Не все элементы списка являются числами"
+            return False, "Не все элементы списка являются числами"

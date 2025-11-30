@@ -16,7 +16,7 @@ def factorial() -> None:
             valid, message = fibo_factorial_validation(n)
             if valid:
                 print(fac(int(n)))
-            else:  
+            else:
                 typer.secho(message, fg=typer.colors.RED)
         except Exception as e:
             typer.secho(f"Error: {e}", fg=typer.colors.RED)
@@ -27,7 +27,7 @@ def fac(n:int) -> int:
     """
     вычисляет факториал
 
-    :param n: число, от которого вычисляется фактриал 
+    :param n: число, от которого вычисляется фактриал
     :return: ans - ответ
     """
 
@@ -50,7 +50,7 @@ def factorial_recursive() -> None:
             valid, message = fibo_factorial_validation(n)
             if valid:
                 print(fac_rec(int(n)))
-            else:  
+            else:
                 typer.secho(message, fg=typer.colors.RED)
         except Exception as e:
             typer.secho(f"Error: {e}", fg=typer.colors.RED)
@@ -59,7 +59,7 @@ def fac_rec(n:int) -> int:
     """
     вычисляет факториал рекурсивно
 
-    :param n: число, от которого вычисляется фактриал 
+    :param n: число, от которого вычисляется фактриал
     :return: ans - ответ
     """
     if n==0:

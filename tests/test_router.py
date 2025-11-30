@@ -11,7 +11,7 @@ class TestRouter:
         """Тест: инвалидный input"""
         router('unknown')
         mock_secho.assert_called_once_with("Unknown function: unknown", fg="red")
-    
+
     @patch('typer.echo')
     @patch('typer.secho')
     def test_router_valid(self, mock_secho, mock_echo):

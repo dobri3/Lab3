@@ -10,12 +10,11 @@ def counting_sort()->None:
     """
     while (n:= input("Counting sort mode>> ")) not in ["back", 'b', 'q']:
         try:
-            n = n.split()
-            valid, message = sort_int_validation(n)
+            n_list = n.split()
+            valid, message = sort_int_validation(n_list)
             if valid:
-                n = list(map(int, n))
-                print(*count(n))
-            else:  
+                print(*count(list(map(int, n_list))))
+            else:
                 typer.secho(message, fg=typer.colors.RED)
         except Exception as e:
             typer.secho(f"Error: {e}", fg=typer.colors.RED)

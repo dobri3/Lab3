@@ -1,34 +1,34 @@
 from unittest.mock import patch
 
 from src.fibo import fibo, fibo_recursive, fibonachi
-    
+
 
 class TestFibonachiMode:
     """Тесты для режима числа Фибоначчи"""
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
     def test_valid_input_calculates_fibonachi(self, mock_secho, mock_print, mock_input):
         """Тест: валидный ввод - вычисляется число Фибоначчи"""
         mock_input.side_effect = ['5', 'back']
-        
+
         fibonachi()
-        
+
         mock_print.assert_called_once_with(5)
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
     def test_invalid_input_shows_error(self, mock_secho, mock_print, mock_input):
         """Тест: невалидный ввод - показывается ошибка"""
         mock_input.side_effect = ['-5', 'back']
-        
+
         fibonachi()
-        
+
         mock_secho.assert_called_once()
         assert mock_secho.call_args[1]['fg'] == 'red'
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
@@ -36,9 +36,9 @@ class TestFibonachiMode:
         """Тест: команды выхода работают"""
         for exit_cmd in ['back', 'b', 'q']:
             mock_input.side_effect = [exit_cmd]
-            
+
             fibonachi()
-            
+
             mock_print.assert_not_called()
             mock_secho.assert_not_called()
 
@@ -54,30 +54,30 @@ class TestFibo:
 
 class TestFibonachiRecurciveMode:
     """Тесты работа мода реурсивного числа Фибоначчи"""
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
     def test_valid_input_calculates_factorial_rec(self, mock_secho, mock_print, mock_input):
         """Тест: валидный ввод - вычисляется число Фибоначчи"""
         mock_input.side_effect = ['5', 'back']
-        
+
         fibonachi()
-        
+
         mock_print.assert_called_once_with(5)
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
     def test_invalid_input_shows_error(self, mock_secho, mock_print, mock_input):
         """Тест: невалидный ввод - показывается ошибка"""
         mock_input.side_effect = ['-5', 'back']
-        
+
         fibonachi()
-        
+
         mock_secho.assert_called_once()
         assert mock_secho.call_args[1]['fg'] == 'red'
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
@@ -85,9 +85,9 @@ class TestFibonachiRecurciveMode:
         """Тест: команды выхода работают"""
         for exit_cmd in ['back', 'b', 'q']:
             mock_input.side_effect = [exit_cmd]
-            
+
             fibonachi()
-            
+
             mock_print.assert_not_called()
             mock_secho.assert_not_called()
 

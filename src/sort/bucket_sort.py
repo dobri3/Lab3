@@ -10,20 +10,19 @@ def bucket_sort()->None:
     :return: None
     """
     while (n:= input("Bucket sort mode>> ")) not in ["back", 'b', 'q']:
-            n = n.split()
-            buckets = int(input("How many buckets: "))
-            if buckets<=0:
+            n_list = n.split()
+            buckets = input("How many buckets: ")
+            if buckets == "" or int(buckets)<=0:
                 typer.secho("Buckets must be greater than 0", fg=typer.colors.RED)
                 break
-            valid, message = sort_float_validation(n)
+            valid, message = sort_float_validation(list(map(float, n_list)))
             if valid:
-                n = list(map(float, n))
-                print(*bucket(n, buckets))
-            else:  
+                print(*bucket(list(map(float, n_list)), int(buckets)))
+            else:
                 typer.secho(message, fg=typer.colors.RED)
 
 
-def bucket(a:list[float],  buckets: int | None = None) -> list[float]:
+def bucket(a:list[float],  buckets: int) -> list[float]:
     """
     осуществляем карманную cортировку
 
@@ -31,11 +30,10 @@ def bucket(a:list[float],  buckets: int | None = None) -> list[float]:
     :return: а отсортированный список
     """
 
-   
     answer = []
     if len(a)<=1:
         return a
-    buckets_list = [[] for _ in range(buckets)]
+    buckets_list: list[list[float]] = [[] for _ in range(buckets)]
     max_el = max(a)
     min_el = min(a)
     range_of_list = max_el-min_el

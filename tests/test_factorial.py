@@ -1,33 +1,33 @@
 from unittest.mock import patch
 from src.factorial import fac, fac_rec, factorial
-    
+
 
 class TestFactorialMode:
     """Тесты для режима факториала"""
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
     def test_valid_input_calculates_factorial(self, mock_secho, mock_print, mock_input):
         """Тест: валидный ввод - вычисляется факториал"""
         mock_input.side_effect = ['5', 'back']
-        
+
         factorial()
-        
+
         mock_print.assert_called_once_with(120)
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
     def test_invalid_input_shows_error(self, mock_secho, mock_print, mock_input):
         """Тест: невалидный ввод - показывается ошибка"""
         mock_input.side_effect = ['-5', 'back']
-        
+
         factorial()
-        
+
         mock_secho.assert_called_once()
         assert mock_secho.call_args[1]['fg'] == 'red'
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
@@ -35,9 +35,9 @@ class TestFactorialMode:
         """Тест: команды выхода работают"""
         for exit_cmd in ['back', 'b', 'q']:
             mock_input.side_effect = [exit_cmd]
-            
+
             factorial()
-            
+
             mock_print.assert_not_called()
             mock_secho.assert_not_called()
 
@@ -53,30 +53,30 @@ class TestFac:
 
 class TestFactorialRecurciveMode:
     """Тесты работа мода реурсивного факториала"""
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
     def test_valid_input_calculates_factorial_rec(self, mock_secho, mock_print, mock_input):
         """Тест: валидный ввод - вычисляется факториал"""
         mock_input.side_effect = ['5', 'back']
-        
+
         factorial()
-        
+
         mock_print.assert_called_once_with(120)
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
     def test_invalid_input_shows_error(self, mock_secho, mock_print, mock_input):
         """Тест: невалидный ввод - показывается ошибка"""
         mock_input.side_effect = ['-5', 'back']
-        
+
         factorial()
-        
+
         mock_secho.assert_called_once()
         assert mock_secho.call_args[1]['fg'] == 'red'
-    
+
     @patch('builtins.input')
     @patch('builtins.print')
     @patch('typer.secho')
@@ -84,9 +84,9 @@ class TestFactorialRecurciveMode:
         """Тест: команды выхода работают"""
         for exit_cmd in ['back', 'b', 'q']:
             mock_input.side_effect = [exit_cmd]
-            
+
             factorial()
-            
+
             mock_print.assert_not_called()
             mock_secho.assert_not_called()
 

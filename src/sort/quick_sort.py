@@ -11,18 +11,17 @@ def quick_sort() -> None:
 
     while (n:= input("Quick sort mode>> ")) not in ["back", 'b', 'q']:
         try:
-            n = n.split()
-            valid, message = sort_int_validation(n)
+            n_list = n.split()
+            valid, message = sort_int_validation(n_list)
             if valid:
-                n = list(map(int, n))
-                print(*quick(n))
-            else:  
+                print(*quick(list(map(int, n_list))))
+            else:
                 typer.secho(message, fg=typer.colors.RED)
         except Exception as e:
             typer.secho(f"Error: {e}", fg=typer.colors.RED)
 
 
-def quick(a:list[int]) -> list[int]:
+def quick(a:list[int|float]) -> list[int|float]:
     """
     осуществляем быструю сортировку
 
