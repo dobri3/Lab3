@@ -29,16 +29,20 @@ def radix(a:list[int], base: int = 10) -> list[int]:
     """
     if len(a)<=1:
         return a
-    max_len = max([len(str(abs(x))) for x in a])
+    min_el = min(a)
+    if min_el<0:
+        a = [x - min_el for x in a]
+        print(a)
+    max_len = max([len(str(x)) for x in a])
     cells:list[list[int]] = [[] for _ in range(base)]
     for i in range(0, max_len):
         for x in a:
-            digit = (x // base ** i) % base
+            digit = (x // (base ** i)) % base
             cells[digit].append(x)
-        array:list[int] = [x for queue in cells for x in queue]
+        a = [x for queue in cells for x in queue]
         cells = [[] for _ in range(base)]
 
-    negatives = [x for x in array if x < 0]
-    positives = [x for x in array if x >= 0]
+    if min_el<0:
+        a = [x + min_el for x in a]
 
-    return negatives + positives
+    return a

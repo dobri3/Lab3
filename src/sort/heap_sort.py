@@ -46,5 +46,4 @@ def to_heap(a, n, i):
 
     if largest != i:
         a[i], a[largest] = a[largest], a[i]
-
         to_heap(a, n, largest)
